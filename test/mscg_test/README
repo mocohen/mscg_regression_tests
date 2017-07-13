@@ -1,0 +1,19 @@
+
+naming convention:
+
+p - pair non bonded
+b - bond
+a - angle
+d - dihedral
+
+i.e.
+*_bad = run with bonds, angles and  dihedrals potentials
+
+
+Dihedral Descriptions:
+
+non-periodic: Harmonic dihedral centered at 0
+across_boundary: harmonic dihedral center at +/- 180
+periodic: Two well dihedral, centered at 0 and at +/- 180
+
+
