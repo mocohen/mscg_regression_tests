@@ -1,6 +1,6 @@
 import numpy as np
 
-def md_content_equality(dat_1,dat_2, prefix="Data File equality: ",xyz_abs_tol=1e-8):
+def mscg_content_equality(dat_1,dat_2, prefix="Data File equality: ",xyz_abs_tol=1e-8):
     result = True
     
     return result
