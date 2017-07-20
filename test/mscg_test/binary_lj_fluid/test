@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd input
+
+newfm_private.x -l binary_lj_fluid.lammpstrj
+
+mv *.dat *.table *.out ../output
+
+cd ../
+
+python check_mscg.py
+
