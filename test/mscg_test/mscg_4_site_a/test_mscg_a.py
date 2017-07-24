@@ -10,20 +10,13 @@ import shutil
 
 ############################### config #####################################
 
-opts, args = getopt.getopt(sys.argv[1:], "c:f:m:r:")
+opts, args = getopt.getopt(sys.argv[1:], "e:")
 
 mscg_exe = ''
 mscg_suffix = ''
 for opt, arg in opts:
     if opt == '-e':
         mscg_exec = arg
-    elif opt == '-r':
-        rangefinder_exec = arg
-    elif opt == '-c'
-        combinefm_exec = arg
-    elif opt == '-m'
-        rem_exec = arg
-
 
 input_traj = "../trajectories/4_site_d_non_periodic.lammpstrj"
 
@@ -39,12 +32,6 @@ filesToCheck = ['1_1_1_ang.dat']
 ## Make sure exectubles exist
 if not os.path.isfile(mscg_exec):
     raise Exception('Could not find mscg executable\n')
-if not os.path.isfile(range_exec):
-    raise Exception('Could not find rangefinder executable\n')
-if not os.path.isfile(combinefm_exec):
-    raise Exception('Could not find combinefm executable\n')
-if not os.path.isfile(rem_exec):
-    raise Exception('Could not find rem executable\n')
 
 # Make sure trajectory file exists
 if not os.path.isfile(input_traj):
