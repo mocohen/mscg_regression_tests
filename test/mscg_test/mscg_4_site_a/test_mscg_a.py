@@ -10,17 +10,19 @@ import shutil
 
 ############################### config #####################################
 
-opts, args = getopt.getopt(sys.argv[1:], "f:s:e:")
+opts, args = getopt.getopt(sys.argv[1:], "c:f:m:r:")
 
 mscg_exe = ''
 mscg_suffix = ''
 for opt, arg in opts:
-    if opt == '-f':
-        mscg_exec_path = arg
-    elif opt == '-s':
-        mscg_suffix = arg
-    elif opt == '-e':
-        mscg_exe = arg
+    if opt == '-e':
+        mscg_exec = arg
+    elif opt == '-r':
+        rangefinder_exec = arg
+    elif opt == '-c'
+        combinefm_exec = arg
+    elif opt == '-m'
+        rem_exec = arg
 
 
 input_traj = "../trajectories/4_site_d_non_periodic.lammpstrj"
@@ -31,23 +33,20 @@ reference_dir ='reference/'
 
 filesToCheck = ['1_1_1_ang.dat']
 
-mscg_exec = mscg_exec_path + '/' + 'newfm' + mscg_suffix
-range_exec = mscg_exec_path + '/' + 'rangefinder' + mscg_suffix
-
 ############################### run ########################################
 
-#try:
-#    os.chdir(output_dir)
-#except:
-#    print('Error: Could not find directory %s\n', output_dir)
-#    exit()
-#
-#input_traj = '../' + input_traj
 
+## Make sure exectubles exist
 if not os.path.isfile(mscg_exec):
     raise Exception('Could not find mscg executable\n')
 if not os.path.isfile(range_exec):
     raise Exception('Could not find rangefinder executable\n')
+if not os.path.isfile(combinefm_exec):
+    raise Exception('Could not find combinefm executable\n')
+if not os.path.isfile(rem_exec):
+    raise Exception('Could not find rem executable\n')
+
+# Make sure trajectory file exists
 if not os.path.isfile(input_traj):
     raise Exception('Could not find trajectory %s\n', input_traj)
 
@@ -63,12 +62,12 @@ try:
 except subprocess.CalledProcessError as e:
     print e.output
     print "MSCG Did not complete! Please check the output\n"
-    sys.exit(1)
+    sys.exit(check.check_result_to_exitval(False))
 
 lastLine  = test_output.split('\n')[-2]
 if 'Freeing' not in lastLine:
     print "MSCG Did not complete! Please check the output\n"
-    sys.exit(1);
+    sys.exit(check.check_result_to_exitval(False))
 
 result = True
 
