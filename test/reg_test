@@ -9,35 +9,78 @@
 #to be called from anywhere.
 git_root=$(git rev-parse --show-toplevel)
 
+MSCGPATH=/home/mocohen/source/MSCG-private/src
+FMEXEC=$MSCGPATH/newfm.x
+RFEXEC=$MSCGPATH/rangefinder.x
+REMEXEC=$MSCGPATH/newrem.x
+CFEXEC=$MSCGPATH/combinefm.x
+
+
 #formats output of command for wrapping and prefix.
 function test_format {
 	fold_length=80
 	prefix='$0="       ++> "$0'
-	$1 | fold -w $fold_length |awk "$prefix"
+	$2 -e $1 | fold -w $fold_length |awk "$prefix"
 	return ${PIPESTATUS[0]}
 }
 
 #runs a regression test.
 function run_reg_test {
-	echo "Running: "$1
-	start_dir=$(pwd)
-	cd $1 || return 255
-	test_format ./test
-	result=$?
-	if [[ $result != 0 ]]; then
-		echo "Regression test failed:"
-		echo "    ${1}"
-	fi
-	cd $start_dir
-	return $result
+	echo "Running: "$2
+ 	start_dir=$(pwd)
+ 	cd $2 || return 255
+ 	test_format $1 ./test 
+ 	result=$?
+ 	if [[ $result != 0 ]]; then
+ 		echo "Regression test failed:"
+ 		echo "    ${2}"
+ 	fi
+ 	cd $start_dir
+ 	return $result
+}
+
+function run_directory {
+    directory_result=0
+    for test_dir in $2*; do
+            run_reg_test $1 $test_dir 
+            status_val=$?
+            directory_result=$((directory_result + status_val))
+    done
 }
 
 global_result=0
 
-for test_dir in $git_root/test/mscg_test/*; do
-	run_reg_test $test_dir
-	status_val=$?
-	global_result=$((global_result + status_val))
-done
+if [ -e $FMEXEC ];then
+    run_directory $FMEXEC $git_root/test/mscg_test/fm $FMEXEC
+    status_val=$?
+    global_result=$((global_result + status_val))
+else
+    echo "Could not find MSCG-FM executable"
+fi
+
+#if [ -e $RFEXEC ];then
+#    run_directory $git_root/test/mscg_test/rf*
+#    status_val=$?
+#    global_result=$((global_result + status_val))
+#else
+#    echo "Could not find MSCG-FM executable"
+#fi
+#
+#if [ -e $REMEXEC ];then
+#    run_directory $git_root/test/mscg_test/rem*
+#    status_val=$?
+#    global_result=$((global_result + status_val))
+#else
+#    echo "Could not find MSCG-FM executable"
+#fi
+#
+#if [ -e $CFEXEC ];then
+#    run_directory $git_root/test/mscg_test/cf*
+#    status_val=$?
+#    global_result=$((global_result + status_val))
+#else
+#    echo "Could not find MSCG-FM executable"
+#fi
+
 
 exit $global_result
