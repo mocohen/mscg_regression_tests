@@ -61,7 +61,7 @@ result = True
 for fileCheck in filesToCheck:
     dat1 = np.loadtxt(output_dir + fileCheck, unpack=True)
     dat2 = np.loadtxt(reference_dir + fileCheck, unpack=True)
-    myResult = check.mscg_content_equality(dat1, dat2)
+    myResult = check.mscg_content_equality(dat1, dat2, prefix=fileCheck+" Data File equality: ")
     if myResult == False:
         result = False
 
