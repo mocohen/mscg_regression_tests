@@ -46,6 +46,7 @@ function run_directory {
             status_val=$?
             directory_result=$((directory_result + status_val))
     done
+    return $directory_result
 }
 
 global_result=0
