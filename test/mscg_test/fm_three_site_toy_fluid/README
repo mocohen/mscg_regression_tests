@@ -1,0 +1,12 @@
+A fluid of linear molecules (A-B-C) with the following force-field:
+
+A-A LJ: eps=0.317 kcal/mol  sig=4.0 A
+B-B LJ: eps=0.221 kcal/mol  sig=5.0 A
+C-C LJ: eps=0.370 kcal/mol  sig=4.5 A
+
+A-B Harmonic: k=60 kcal/mol/A2   d0=4.2 A
+B-C Harmonic: k=120 kcal/mol/A2   d0=5.2 A
+
+A-B-C Harmonic: k=100 kcal/mol/rad2 [or 0.030431 kcal/mol/deg2]  theta0=100 deg
+
+with no intramolecular 1-2 nonbonded interactions (aka special_bonds lj 0.0 1.0 1.0)

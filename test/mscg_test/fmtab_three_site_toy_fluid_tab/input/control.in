@@ -1,0 +1,30 @@
+start_frame 0
+n_frames 1000
+block_size 1
+nonbonded_cutoff 15.0
+max_pair_bonds_per_site 3
+max_angles_per_site 3
+three_body_nonbonded_style 0
+
+basis_type 0
+pair_nonbonded_bspline_basis_order 3
+pair_nonbonded_basis_set_resolution 0.1
+pair_nonbonded_output_binwidth 0.1
+
+pair_bond_bspline_basis_order 3
+pair_bond_basis_set_resolution 0.01
+pair_bond_output_binwidth 0.01
+
+angle_bspline_basis_order 3
+angle_basis_set_resolution 0.5
+angle_output_binwidth 0.5
+
+matrix_type 0
+primary_output_style 2
+output_solution_flag 1
+
+excluded_style 2 
+output_residual_flag 1
+output_spline_coeffs_flag 1
+
+angle_type 0
