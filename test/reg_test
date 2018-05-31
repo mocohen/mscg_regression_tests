@@ -9,7 +9,8 @@
 #to be called from anywhere.
 git_root=$(git rev-parse --show-toplevel)
 
-MSCGPATH=/home/mocohen/source/MSCG-private/src
+#MSCGPATH=/home/mocohen/source/MSCG-private/src
+MSCGPATH=/Users/ajpak/Binaries
 FMEXEC=$MSCGPATH/newfm.x
 RFEXEC=$MSCGPATH/rangefinder.x
 REMEXEC=$MSCGPATH/newrem.x

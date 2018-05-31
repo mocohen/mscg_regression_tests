@@ -9,5 +9,4 @@ B-C Harmonic: k=120 kcal/mol/A2   d0=5.2 A
 
 A-B-C Harmonic: k=100 kcal/mol/rad2 [or 0.030431 kcal/mol/deg2]  theta0=100 deg
 
-
-with no intramolecular nonbonded interactions (aka special_bonds lj 0.0 0.0 0.0)
+with no intramolecular 1-2 nonbonded interactions (aka special_bonds lj 0.0 1.0 1.0)

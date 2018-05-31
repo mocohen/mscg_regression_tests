@@ -1,12 +1,1 @@
-#!/bin/bash
-
-cd input
-
-newfm_private.x -l 3site_toy.lammpstrj
-
-mv *.dat *.table *.out ../output
-
-cd ../
-
-python check_mscg.py
-
+test_3site_fm.py
