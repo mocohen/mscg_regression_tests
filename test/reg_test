@@ -10,7 +10,7 @@
 git_root=$(git rev-parse --show-toplevel)
 
 #MSCGPATH=/home/mocohen/source/MSCG-private/src
-MSCGPATH=/Users/ajpak/Binaries
+MSCGPATH=/Users/ajpak/Downloads/MSCG_private/master/src
 FMEXEC=$MSCGPATH/newfm.x
 RFEXEC=$MSCGPATH/rangefinder.x
 REMEXEC=$MSCGPATH/newrem.x
@@ -68,13 +68,15 @@ fi
 #    echo "Could not find MSCG-FM executable"
 #fi
 #
-#if [ -e $REMEXEC ];then
-#    run_directory $git_root/test/mscg_test/rem*
-#    status_val=$?
-#    global_result=$((global_result + status_val))
-#else
-#    echo "Could not find MSCG-FM executable"
-#fi
+
+if [ -e $REMEXEC ];then
+    run_directory $REMEXEC $git_root/test/mscg_test/rem $REMEXEC
+    status_val=$?
+    global_result=$((global_result + status_val))
+else
+    echo "Could not find MSCG-REM executable"
+fi
+
 #
 #if [ -e $CFEXEC ];then
 #    run_directory $git_root/test/mscg_test/cf*
